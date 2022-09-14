@@ -24,12 +24,14 @@ public class UserLogic implements IUserLogic {
 
     @Override
     public UserModel getById(long id) {
-        return null;
+        var user = userRepository.getById(id);
+        return user;
     }
 
     @Override
     public List<UserModel> getAll() {
-        return null;
+        var users = userRepository.getAll();
+        return users;
     }
 
     @Override
@@ -40,12 +42,13 @@ public class UserLogic implements IUserLogic {
 
     @Override
     public UserModel updateUser(UserModel updateModel) {
-        return null;
+        var user = userRepository.updateUser(updateModel);
+        return user;
     }
 
     @Override
     public void deleteUser(long id) {
-
+        userRepository.deleteUser(id);
     }
 
     /**
