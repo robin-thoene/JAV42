@@ -6,21 +6,21 @@ package com.robinthoene.logic.models;
 public abstract class BaseModel {
 
     /**
-     * Default constructor.
+     * Retrieve the unique database identifier of the entity.
      *
-     * @param id The initial value of the models unique database identifier.
-     */
-    public BaseModel(long id) {
-        this.id = id;
-    }
-
-    /**
-     * Retrieve the current value of the database identifier.
-     *
-     * @return The unique identifier of the model.
+     * @return The unique identifier.
      */
     public long getId() {
         return id;
+    }
+
+    /**
+     * Set the value of the entities unique identifier.
+     *
+     * @param id The new value for the unique identifier.
+     */
+    public void setId(long id) {
+        id = id;
     }
 
     /**

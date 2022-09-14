@@ -34,7 +34,8 @@ public class UserLogic implements IUserLogic {
 
     @Override
     public UserModel createUser(UserModel createModel) {
-        return null;
+        var createdUser = userRepository.createUser(createModel);
+        return createdUser;
     }
 
     @Override

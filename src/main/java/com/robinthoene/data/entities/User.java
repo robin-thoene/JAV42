@@ -1,9 +1,31 @@
-package com.robinthoene.logic.models;
+package com.robinthoene.data.entities;
+
+import javax.persistence.*;
 
 /**
  * Represents a single user in the database.
  */
-public class UserModel extends BaseModel {
+@Entity
+@Table(name = "users")
+public class User {
+
+    /**
+     * Retrieve the unique database identifier of the entity.
+     *
+     * @return The unique identifier.
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * Set the value of the entities unique identifier.
+     *
+     * @param id The new value for the unique identifier.
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
 
     /**
      * Get the current value of the users first name.
@@ -40,6 +62,13 @@ public class UserModel extends BaseModel {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    /**
+     * The unique database identifier.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     /**
      * The users first name.
