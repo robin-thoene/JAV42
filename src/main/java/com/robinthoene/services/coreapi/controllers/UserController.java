@@ -76,7 +76,7 @@ public class UserController {
      *
      * @param id The unique identifier of the user to delete.
      */
-    @RequestMapping(method = RequestMethod.DELETE, path = "user")
+    @RequestMapping(method = RequestMethod.DELETE, path = "user/{id}")
     public ResponseEntity deleteUser(@PathVariable long id) {
         userLogic.deleteUser(id);
         return ok().build();

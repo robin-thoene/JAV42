@@ -20,7 +20,7 @@ public abstract class BaseModel {
      * @param id The new value for the unique identifier.
      */
     public void setId(long id) {
-        id = id;
+        this.id = id;
     }
 
     /**

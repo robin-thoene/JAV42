@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,12 +19,20 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public UserModel getById(long id) {
-        return null;
+        var user = crudUserRepository.findById(id).orElseThrow();
+        var userModel = UserMapper.GetModel(user);
+        return userModel;
     }
 
     @Override
     public List<UserModel> getAll() {
-        return null;
+        var users = crudUserRepository.findAll();
+        var userModels = new ArrayList<UserModel>();
+        users.forEach((user) -> {
+            var model = UserMapper.GetModel(user);
+            userModels.add(model);
+        });
+        return userModels;
     }
 
     @Override
@@ -36,12 +45,15 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public UserModel updateUser(UserModel updateModel) {
-        return null;
+        var userToUpdate = UserMapper.GetEntity(updateModel);
+        var user = crudUserRepository.save(userToUpdate);
+        var updatedUser = UserMapper.GetModel(user);
+        return updatedUser;
     }
 
     @Override
     public void deleteUser(long id) {
-
+        crudUserRepository.deleteById(id);
     }
 
     /**
