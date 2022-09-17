@@ -1,4 +1,4 @@
-package com.robinthoene.services.coreapi;
+package com.robinthoene.jav42.services.coreapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,13 +1,19 @@
-package com.robinthoene.services.coreapi;
+package com.robinthoene.jav42.services.coreapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(basePackages = "com.robinthoene")
-@EntityScan("com.robinthoene.data.entities")
-@SpringBootApplication(scanBasePackages = {"com.robinthoene.data.entities", "com.robinthoene.logic.interfaces", "com.robinthoene.repositories.core", "com.robinthoene.logic.core", "com.robinthoene.services.coreapi"})
+@EnableJpaRepositories(basePackages = "com.robinthoene.jav42")
+@EntityScan("com.robinthoene.jav42.data.entities")
+@SpringBootApplication(scanBasePackages = {
+        "com.robinthoene.jav42.data.entities",
+        "com.robinthoene.jav42.logic.interfaces",
+        "com.robinthoene.jav42.repositories.core",
+        "com.robinthoene.jav42.logic.core",
+        "com.robinthoene.jav42.services.coreapi"
+})
 public class CoreapiApplication {
 
     /**

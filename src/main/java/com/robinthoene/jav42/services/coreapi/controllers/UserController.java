@@ -1,7 +1,7 @@
-package com.robinthoene.services.coreapi.controllers;
+package com.robinthoene.jav42.services.coreapi.controllers;
 
-import com.robinthoene.logic.interfaces.IUserLogic;
-import com.robinthoene.logic.models.UserModel;
+import com.robinthoene.jav42.logic.interfaces.IUserLogic;
+import com.robinthoene.jav42.logic.models.UserModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

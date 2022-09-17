@@ -1,7 +1,7 @@
-package com.robinthoene.repositories.mapper;
+package com.robinthoene.jav42.repositories.mapper;
 
-import com.robinthoene.data.entities.User;
-import com.robinthoene.logic.models.UserModel;
+import com.robinthoene.jav42.data.entities.User;
+import com.robinthoene.jav42.logic.models.UserModel;
 
 /**
  * Provides methods to map user entities to models and vice versa.

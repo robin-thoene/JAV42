@@ -1,8 +1,8 @@
-package com.robinthoene.logic.core;
+package com.robinthoene.jav42.logic.core;
 
-import com.robinthoene.logic.interfaces.IUserLogic;
-import com.robinthoene.logic.interfaces.IUserRepository;
-import com.robinthoene.logic.models.UserModel;
+import com.robinthoene.jav42.logic.interfaces.IUserLogic;
+import com.robinthoene.jav42.logic.interfaces.IUserRepository;
+import com.robinthoene.jav42.logic.models.UserModel;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

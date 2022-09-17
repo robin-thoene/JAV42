@@ -1,7 +1,6 @@
-package com.robinthoene.logic.interfaces;
+package com.robinthoene.jav42.logic.interfaces;
 
-import com.robinthoene.logic.models.UserModel;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.robinthoene.jav42.logic.models.UserModel;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -1,9 +1,9 @@
-package com.robinthoene.repositories.core;
+package com.robinthoene.jav42.repositories.core;
 
-import com.robinthoene.logic.interfaces.ICrudUserRepository;
-import com.robinthoene.logic.interfaces.IUserRepository;
-import com.robinthoene.logic.models.UserModel;
-import com.robinthoene.repositories.mapper.UserMapper;
+import com.robinthoene.jav42.logic.interfaces.ICrudUserRepository;
+import com.robinthoene.jav42.logic.interfaces.IUserRepository;
+import com.robinthoene.jav42.logic.models.UserModel;
+import com.robinthoene.jav42.repositories.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.robinthoene.data.entities;
+package com.robinthoene.jav42.data.entities;
 
 import javax.persistence.*;
 
@@ -64,6 +64,24 @@ public class User {
     }
 
     /**
+     * Retrieve the users hashed password.
+     *
+     * @return The users hashed password.
+     */
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    /**
+     * Set teh users hashed password.
+     *
+     * @param hashedPassword The hashed password of the user.
+     */
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
+
+    /**
      * The unique database identifier.
      */
     @Id
@@ -79,4 +97,9 @@ public class User {
      * The users last name.
      */
     private String lastName;
+
+    /**
+     * The users hashed password.
+     */
+    private String hashedPassword;
 }
