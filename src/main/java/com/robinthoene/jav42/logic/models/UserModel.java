@@ -42,24 +42,6 @@ public class UserModel extends BaseModel {
     }
 
     /**
-     * Retrieve the users hashed password.
-     *
-     * @return The users hashed password.
-     */
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
-
-    /**
-     * Set teh users hashed password.
-     *
-     * @param hashedPassword The hashed password of the user.
-     */
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }
-
-    /**
      * The users first name.
      */
     private String firstName;
@@ -68,9 +50,4 @@ public class UserModel extends BaseModel {
      * The users last name.
      */
     private String lastName;
-
-    /**
-     * The users hashed password.
-     */
-    private String hashedPassword;
 }
