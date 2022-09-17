@@ -1,7 +1,10 @@
 package com.robinthoene.jav42.repositories.mapper;
 
 import com.robinthoene.jav42.data.entities.User;
-import com.robinthoene.jav42.logic.models.UserModel;
+import com.robinthoene.jav42.logic.models.UserCreateModel;
+import com.robinthoene.jav42.logic.models.UserCreatedModel;
+import com.robinthoene.jav42.logic.models.UserReadModel;
+import com.robinthoene.jav42.logic.models.UserUpdateModel;
 
 /**
  * Provides methods to map user entities to models and vice versa.
@@ -14,11 +17,29 @@ public final class UserMapper {
      * @param entity The entity to map.
      * @return The mapped model.
      */
-    public static UserModel GetModel(User entity) {
-        var model = new UserModel();
+    public static UserReadModel GetReadModel(User entity) {
+        var model = new UserReadModel();
         model.setId(entity.getId());
+        model.setUserName(entity.getUserName());
         model.setFirstName(entity.getFirstName());
         model.setLastName(entity.getLastName());
+        return model;
+    }
+
+    /**
+     * Map a user entity to the user created model.
+     *
+     * @param entity   The entity of the created user.
+     * @param password The initial password that was used to create the user.
+     * @return The user created model.
+     */
+    public static UserCreatedModel GetCreatedModel(User entity, String password) {
+        var model = new UserCreatedModel();
+        model.setId(entity.getId());
+        model.setUserName(entity.getUserName());
+        model.setFirstName(entity.getFirstName());
+        model.setLastName(entity.getLastName());
+        model.setPassword(password);
         return model;
     }
 
@@ -28,7 +49,37 @@ public final class UserMapper {
      * @param model The model to map.
      * @return The mapped entity.
      */
-    public static User GetEntity(UserModel model) {
+    public static User GetEntityFromReadModel(UserReadModel model) {
+        var entity = new User();
+        entity.setId(model.getId());
+        entity.setUserName(model.getUserName());
+        entity.setLastName(model.getLastName());
+        entity.setFirstName(model.getFirstName());
+        return entity;
+    }
+
+    /**
+     * Map a user create model to the entity.
+     *
+     * @param model The creation model to map.
+     * @return The mapped entity.
+     */
+    public static User GetEntityFromCreateModel(UserCreateModel model) {
+        var entity = new User();
+        entity.setId(model.getId());
+        entity.setUserName(model.getUserName());
+        entity.setLastName(model.getLastName());
+        entity.setFirstName(model.getFirstName());
+        return entity;
+    }
+
+    /**
+     * Map a user update model to the entity.
+     *
+     * @param model The update model to map.
+     * @return The mapped entity.
+     */
+    public static User GetEntityFromUpdateModel(UserUpdateModel model) {
         var entity = new User();
         entity.setId(model.getId());
         entity.setLastName(model.getLastName());

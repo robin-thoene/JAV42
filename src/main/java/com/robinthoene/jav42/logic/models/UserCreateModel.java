@@ -3,7 +3,7 @@ package com.robinthoene.jav42.logic.models;
 /**
  * Represents a single user in the database.
  */
-public class UserModel extends BaseModel {
+public class UserCreateModel extends BaseModel {
 
     /**
      * Get the current value of the users first name.
@@ -42,6 +42,24 @@ public class UserModel extends BaseModel {
     }
 
     /**
+     * Retrieve the users login name.
+     *
+     * @return The username.
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * Set the users login name.
+     *
+     * @param userName The new username to use.
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    /**
      * The users first name.
      */
     private String firstName;
@@ -50,4 +68,9 @@ public class UserModel extends BaseModel {
      * The users last name.
      */
     private String lastName;
+
+    /**
+     * The username.
+     */
+    private String userName;
 }

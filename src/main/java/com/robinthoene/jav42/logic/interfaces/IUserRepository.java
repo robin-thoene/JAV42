@@ -1,6 +1,9 @@
 package com.robinthoene.jav42.logic.interfaces;
 
-import com.robinthoene.jav42.logic.models.UserModel;
+import com.robinthoene.jav42.logic.models.UserCreateModel;
+import com.robinthoene.jav42.logic.models.UserCreatedModel;
+import com.robinthoene.jav42.logic.models.UserReadModel;
+import com.robinthoene.jav42.logic.models.UserUpdateModel;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,14 +20,14 @@ public interface IUserRepository {
      * @param id The unique identifier of the desired user.
      * @return The retrieved user.
      */
-    UserModel getById(long id);
+    UserReadModel getById(long id);
 
     /**
      * Retrieve all users.
      *
      * @return All users.
      */
-    List<UserModel> getAll();
+    List<UserReadModel> getAll();
 
     /**
      * Create a single user.
@@ -32,7 +35,7 @@ public interface IUserRepository {
      * @param createModel The model of the user to create.
      * @return The model of the created user.
      */
-    UserModel createUser(UserModel createModel);
+    UserCreatedModel createUser(UserCreateModel createModel);
 
     /**
      * Update a single user.
@@ -40,7 +43,7 @@ public interface IUserRepository {
      * @param updateModel The model of the user to update.
      * @return The model of the updated user.
      */
-    UserModel updateUser(UserModel updateModel);
+    UserReadModel updateUser(UserUpdateModel updateModel);
 
     /**
      * Delete a single user.

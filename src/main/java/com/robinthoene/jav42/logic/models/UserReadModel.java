@@ -1,31 +1,9 @@
-package com.robinthoene.jav42.data.entities;
-
-import javax.persistence.*;
+package com.robinthoene.jav42.logic.models;
 
 /**
  * Represents a single user in the database.
  */
-@Entity
-@Table(name = "users")
-public class User {
-
-    /**
-     * Retrieve the unique database identifier of the entity.
-     *
-     * @return The unique identifier.
-     */
-    public long getId() {
-        return id;
-    }
-
-    /**
-     * Set the value of the entities unique identifier.
-     *
-     * @param id The new value for the unique identifier.
-     */
-    public void setId(long id) {
-        this.id = id;
-    }
+public class UserReadModel extends BaseModel {
 
     /**
      * Get the current value of the users first name.
@@ -62,7 +40,7 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+    
     /**
      * Retrieve the users login name.
      *
@@ -82,51 +60,17 @@ public class User {
     }
 
     /**
-     * Retrieve the users hashed password.
-     *
-     * @return The users hashed password.
-     */
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
-
-    /**
-     * Set teh users hashed password.
-     *
-     * @param hashedPassword The hashed password of the user.
-     */
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }
-
-    /**
-     * The unique database identifier.
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    /**
      * The users first name.
      */
-    @Column
     private String firstName;
 
     /**
      * The users last name.
      */
-    @Column
     private String lastName;
 
     /**
-     * The unique username to use to login.
+     * The username.
      */
-    @Column(unique = true, nullable = false)
     private String userName;
-
-    /**
-     * The users hashed password.
-     */
-    @Column(nullable = false)
-    private String hashedPassword;
 }
