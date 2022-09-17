@@ -51,4 +51,12 @@ public interface IUserRepository {
      * @param id The unique identifier of the user to delete.
      */
     void deleteUser(long id);
+
+    /**
+     * Retrieve a user by it's unique username.
+     *
+     * @param userName The username to search for.
+     * @return The retrieved user.
+     */
+    UserReadModel getByUserName(String userName);
 }

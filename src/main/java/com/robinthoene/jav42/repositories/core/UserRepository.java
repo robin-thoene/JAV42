@@ -77,6 +77,13 @@ public class UserRepository implements IUserRepository {
         crudUserRepository.deleteById(id);
     }
 
+    @Override
+    public UserReadModel getByUserName(String userName) {
+        var user = crudUserRepository.getByUserName(userName).orElseThrow();
+        var userModel = UserMapper.GetReadModel(user);
+        return userModel;
+    }
+
     /**
      * The injected CRUD repository to access users in the database.
      */
