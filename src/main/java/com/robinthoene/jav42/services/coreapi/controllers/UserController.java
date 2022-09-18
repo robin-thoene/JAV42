@@ -38,9 +38,14 @@ public class UserController {
      * @return The retrieved user.
      */
     @RequestMapping(method = RequestMethod.GET, path = "user/{id}")
-    public ResponseEntity<UserReadModel> getById(@PathVariable long id) {
-        var user = userLogic.getById(id);
-        return ok(user);
+    public ResponseEntity<UserReadModel> getById(@PathVariable long id, @RequestHeader(value = "user-name") String requestCallerUserName, @RequestHeader(value = "password") String requestCallerPasswordHash) {
+        try {
+            userAuthorizationLogic.authorizeAdmin(requestCallerUserName, requestCallerPasswordHash);
+            var user = userLogic.getById(id);
+            return ok(user);
+        } catch (UserAuthorizationException ex) {
+            return new ResponseEntity("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
     }
 
     /**
@@ -49,9 +54,14 @@ public class UserController {
      * @return All users.
      */
     @RequestMapping(method = RequestMethod.GET, path = "user")
-    public ResponseEntity<List<UserReadModel>> getAll() {
-        var allUsers = userLogic.getAll();
-        return ok(allUsers);
+    public ResponseEntity<List<UserReadModel>> getAll(@RequestHeader(value = "user-name") String requestCallerUserName, @RequestHeader(value = "password") String requestCallerPasswordHash) {
+        try {
+            userAuthorizationLogic.authorizeAdmin(requestCallerUserName, requestCallerPasswordHash);
+            var allUsers = userLogic.getAll();
+            return ok(allUsers);
+        } catch (UserAuthorizationException ex) {
+            return new ResponseEntity("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
     }
 
     /**
@@ -61,9 +71,14 @@ public class UserController {
      * @return The model of the created user.
      */
     @RequestMapping(method = RequestMethod.POST, path = "user")
-    public ResponseEntity<UserReadModel> createUser(@RequestBody UserCreateModel createModel) {
-        var createdUser = userLogic.createUser(createModel);
-        return ok(createdUser);
+    public ResponseEntity<UserReadModel> createUser(@RequestBody UserCreateModel createModel, @RequestHeader(value = "user-name") String requestCallerUserName, @RequestHeader(value = "password") String requestCallerPasswordHash) {
+        try {
+            userAuthorizationLogic.authorizeAdmin(requestCallerUserName, requestCallerPasswordHash);
+            var createdUser = userLogic.createUser(createModel);
+            return ok(createdUser);
+        } catch (UserAuthorizationException ex) {
+            return new ResponseEntity("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
     }
 
     /**
@@ -73,9 +88,14 @@ public class UserController {
      * @return The model of the updated user.
      */
     @RequestMapping(method = RequestMethod.PUT, path = "user")
-    public ResponseEntity<UserReadModel> updateUser(@RequestBody UserUpdateModel updateModel) {
-        var updatedUser = userLogic.updateUser(updateModel);
-        return ok(updatedUser);
+    public ResponseEntity<UserReadModel> updateUser(@RequestBody UserUpdateModel updateModel, @RequestHeader(value = "user-name") String requestCallerUserName, @RequestHeader(value = "password") String requestCallerPasswordHash) {
+        try {
+            userAuthorizationLogic.authorizeAdmin(requestCallerUserName, requestCallerPasswordHash);
+            var updatedUser = userLogic.updateUser(updateModel);
+            return ok(updatedUser);
+        } catch (UserAuthorizationException ex) {
+            return new ResponseEntity("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
     }
 
     /**
@@ -84,26 +104,29 @@ public class UserController {
      * @param id The unique identifier of the user to delete.
      */
     @RequestMapping(method = RequestMethod.DELETE, path = "user/{id}")
-    public ResponseEntity deleteUser(@PathVariable long id) {
-        userLogic.deleteUser(id);
-        return ok().build();
+    public ResponseEntity deleteUser(@PathVariable long id, @RequestHeader(value = "user-name") String requestCallerUserName, @RequestHeader(value = "password") String requestCallerPasswordHash) {
+        try {
+            userAuthorizationLogic.authorizeAdmin(requestCallerUserName, requestCallerPasswordHash);
+            userLogic.deleteUser(id);
+            return ok().build();
+        } catch (UserAuthorizationException ex) {
+            return new ResponseEntity("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
     }
 
     /**
      * Authorize a user as admin.
      *
-     * @param userName     The username to try for authorization.
-     * @param passwordHash The hashed password to try for authorization.
      * @return 200, if the given username and password are correct and if the user is an admin, else 401.
      */
-    @RequestMapping(method = RequestMethod.POST, path = "user/authorize-as-admin/{userName}/{passwordHash}")
-    public ResponseEntity authorizeAsAdmin(@PathVariable String userName, @PathVariable String passwordHash) {
+    @RequestMapping(method = RequestMethod.POST, path = "user/authorize-as-admin")
+    public ResponseEntity<UserReadModel> authorizeAsAdmin(@RequestHeader(value = "user-name") String requestCallerUserName, @RequestHeader(value = "password") String requestCallerPasswordHash) {
         try {
-            userAuthorizationLogic.authorizeAdmin(userName, passwordHash);
+            var user = userAuthorizationLogic.authorizeAdmin(requestCallerUserName, requestCallerPasswordHash);
+            return ok(user);
         } catch (UserAuthorizationException ex) {
             return new ResponseEntity("Unauthorized", HttpStatus.UNAUTHORIZED);
         }
-        return ok().build();
     }
 
 
