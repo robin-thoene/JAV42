@@ -23,7 +23,30 @@ public class UserCreatedModel extends UserReadModel {
     }
 
     /**
+     * Retrieve whether the user is an admin or not.
+     *
+     * @return The current admin state.
+     */
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    /**
+     * Set whether the user is an admin or not.
+     *
+     * @param admin The new admin state.
+     */
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    /**
      * The automatic generated, initial user password.
      */
     private String password;
+
+    /**
+     * Whether the user is an admin or not.
+     */
+    private boolean isAdmin;
 }

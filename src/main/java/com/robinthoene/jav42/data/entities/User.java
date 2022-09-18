@@ -91,12 +91,30 @@ public class User {
     }
 
     /**
-     * Set teh users hashed password.
+     * Set the users hashed password.
      *
      * @param hashedPassword The hashed password of the user.
      */
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
+    }
+
+    /**
+     * Retrieve whether the user is an admin or not.
+     *
+     * @return The current admin state.
+     */
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    /**
+     * Set whether the user is an admin or not.
+     *
+     * @param admin The new admin state.
+     */
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
     /**
@@ -129,4 +147,10 @@ public class User {
      */
     @Column(nullable = false)
     private String hashedPassword;
+
+    /**
+     * Whether the user is an admin or not.
+     */
+    @Column
+    private boolean isAdmin;
 }

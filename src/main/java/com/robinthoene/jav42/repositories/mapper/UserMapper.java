@@ -23,6 +23,7 @@ public final class UserMapper {
         model.setUserName(entity.getUserName());
         model.setFirstName(entity.getFirstName());
         model.setLastName(entity.getLastName());
+        model.setAdmin(entity.isAdmin());
         return model;
     }
 
@@ -40,6 +41,7 @@ public final class UserMapper {
         model.setFirstName(entity.getFirstName());
         model.setLastName(entity.getLastName());
         model.setPassword(password);
+        model.setAdmin(entity.isAdmin());
         return model;
     }
 
@@ -55,6 +57,7 @@ public final class UserMapper {
         entity.setUserName(model.getUserName());
         entity.setLastName(model.getLastName());
         entity.setFirstName(model.getFirstName());
+        entity.setAdmin(model.isAdmin());
         return entity;
     }
 
@@ -70,6 +73,7 @@ public final class UserMapper {
         entity.setUserName(model.getUserName());
         entity.setLastName(model.getLastName());
         entity.setFirstName(model.getFirstName());
+        entity.setAdmin(model.isAdmin());
         return entity;
     }
 
@@ -84,6 +88,7 @@ public final class UserMapper {
         entity.setId(model.getId());
         entity.setLastName(model.getLastName());
         entity.setFirstName(model.getFirstName());
+        entity.setAdmin(model.isAdmin());
         return entity;
     }
 }

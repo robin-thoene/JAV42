@@ -41,6 +41,24 @@ public class UserUpdateModel extends BaseModel {
     }
 
     /**
+     * Retrieve whether the user is an admin or not.
+     *
+     * @return The current admin state.
+     */
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    /**
+     * Set whether the user is an admin or not.
+     *
+     * @param admin The new admin state.
+     */
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    /**
      * The users first name.
      */
     private String firstName;
@@ -49,4 +67,9 @@ public class UserUpdateModel extends BaseModel {
      * The users last name.
      */
     private String lastName;
+
+    /**
+     * Whether the user is an admin or not.
+     */
+    private boolean isAdmin;
 }

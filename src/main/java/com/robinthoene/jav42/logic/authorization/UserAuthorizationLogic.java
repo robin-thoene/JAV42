@@ -1,6 +1,7 @@
 package com.robinthoene.jav42.logic.authorization;
 
 import com.robinthoene.jav42.logic.common.exceptions.UserAuthenticationException;
+import com.robinthoene.jav42.logic.common.exceptions.UserAuthorizationException;
 import com.robinthoene.jav42.logic.interfaces.IUserAuthorizationLogic;
 import com.robinthoene.jav42.logic.interfaces.IUserRepository;
 import com.robinthoene.jav42.logic.models.UserReadModel;
@@ -15,13 +16,18 @@ import org.springframework.stereotype.Component;
 public class UserAuthorizationLogic implements IUserAuthorizationLogic {
 
     @Override
-    public UserReadModel authenticateUserWithPasswordHash(String userName, String passwordHash) throws UserAuthenticationException {
+    public UserReadModel authenticateUser(String userName, String passwordHash) throws UserAuthenticationException {
         var userToCheck = userRepository.getByUserName(userName);
         var isPasswordValid = userRepository.checkUserPassword(userToCheck, passwordHash);
         if (!isPasswordValid) {
             throw new UserAuthenticationException();
         }
         return userToCheck;
+    }
+
+    @Override
+    public UserReadModel authorizeAdmin(String userName, String passwordHash) throws UserAuthorizationException {
+        return null;
     }
 
     @Autowired

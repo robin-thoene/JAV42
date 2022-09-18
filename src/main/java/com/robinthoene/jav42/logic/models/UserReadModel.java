@@ -60,6 +60,24 @@ public class UserReadModel extends BaseModel {
     }
 
     /**
+     * Retrieve whether the user is an admin or not.
+     *
+     * @return The current admin state.
+     */
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    /**
+     * Set whether the user is an admin or not.
+     *
+     * @param admin The new admin state.
+     */
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    /**
      * The users first name.
      */
     private String firstName;
@@ -73,4 +91,9 @@ public class UserReadModel extends BaseModel {
      * The username.
      */
     private String userName;
+
+    /**
+     * Whether the user is an admin or not.
+     */
+    private boolean isAdmin;
 }
