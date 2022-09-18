@@ -84,6 +84,12 @@ public class UserRepository implements IUserRepository {
         return userModel;
     }
 
+    @Override
+    public boolean checkUserPassword(UserReadModel user, String passwordHash) {
+        var databaseUser = crudUserRepository.findById(user.getId()).orElseThrow();
+        return passwordHash.equals(databaseUser.getHashedPassword());
+    }
+
     /**
      * The injected CRUD repository to access users in the database.
      */

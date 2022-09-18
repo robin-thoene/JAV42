@@ -59,4 +59,13 @@ public interface IUserRepository {
      * @return The retrieved user.
      */
     UserReadModel getByUserName(String userName);
+
+    /**
+     * Check if a given hashed password is valid to authenticate a user.
+     *
+     * @param user         The user to authenticate.
+     * @param passwordHash The hashed password to compare with the stored one.
+     * @return True, if the password is correct, false if not.
+     */
+    boolean checkUserPassword(UserReadModel user, String passwordHash);
 }

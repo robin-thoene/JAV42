@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "com.robinthoene.jav42.data.entities",
         "com.robinthoene.jav42.logic.interfaces",
         "com.robinthoene.jav42.repositories.core",
+        "com.robinthoene.jav42.logic.authorization",
         "com.robinthoene.jav42.logic.core",
         "com.robinthoene.jav42.services.coreapi"
 })

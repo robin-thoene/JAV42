@@ -11,16 +11,6 @@ import org.springframework.stereotype.Component;
 public interface IUserAuthorizationLogic {
 
     /**
-     * Try to authenticate a user using the combination of username and password.
-     *
-     * @param userName The unique username.
-     * @param password The password to use for the authentication trial.
-     * @return The model of the user, if the authentication attempt is successful.
-     * @throws UserAuthenticationException The exception that is thrown if the authentication attempt fails.
-     */
-    UserReadModel AuthenticateUserWithPassword(String userName, String password) throws UserAuthenticationException;
-
-    /**
      * Try to authenticate a user using the combination of username and password hash.
      *
      * @param userName     The unique username.
@@ -28,5 +18,5 @@ public interface IUserAuthorizationLogic {
      * @return The model of the user, if the authentication attempt is successful.
      * @throws UserAuthenticationException The exception that is thrown if the authentication attempt fails.
      */
-    UserReadModel AuthenticateUserWithPasswordHash(String userName, String passwordHash) throws UserAuthenticationException;
+    UserReadModel authenticateUserWithPasswordHash(String userName, String passwordHash) throws UserAuthenticationException;
 }
