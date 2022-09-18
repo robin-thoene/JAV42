@@ -1,9 +1,12 @@
 package com.robinthoene.jav42.services.coreapi.controllers;
 
+import com.robinthoene.jav42.logic.common.exceptions.UserAuthorizationException;
+import com.robinthoene.jav42.logic.interfaces.IUserAuthorizationLogic;
 import com.robinthoene.jav42.logic.interfaces.IUserLogic;
 import com.robinthoene.jav42.logic.models.UserCreateModel;
 import com.robinthoene.jav42.logic.models.UserReadModel;
 import com.robinthoene.jav42.logic.models.UserUpdateModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +23,12 @@ public class UserController {
     /**
      * Default constructor.
      *
-     * @param userLogic The injected user logic.
+     * @param userLogic              The injected user logic.
+     * @param userAuthorizationLogic The injected logic regarding user authorization.
      */
-    public UserController(IUserLogic userLogic) {
+    public UserController(IUserLogic userLogic, IUserAuthorizationLogic userAuthorizationLogic) {
         this.userLogic = userLogic;
+        this.userAuthorizationLogic = userAuthorizationLogic;
     }
 
     /**
@@ -84,9 +89,31 @@ public class UserController {
         return ok().build();
     }
 
+    /**
+     * Authorize a user as admin.
+     *
+     * @param userName     The username to try for authorization.
+     * @param passwordHash The hashed password to try for authorization.
+     * @return 200, if the given username and password are correct and if the user is an admin, else 401.
+     */
+    @RequestMapping(method = RequestMethod.POST, path = "user/authorize-as-admin/{userName}/{passwordHash}")
+    public ResponseEntity authorizeAsAdmin(@PathVariable String userName, @PathVariable String passwordHash) {
+        try {
+            userAuthorizationLogic.authorizeAdmin(userName, passwordHash);
+        } catch (UserAuthorizationException ex) {
+            return new ResponseEntity("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
+        return ok().build();
+    }
+
 
     /**
      * The injected user logic.
      */
     private IUserLogic userLogic;
+
+    /**
+     * The injected logic regarding user authorization.
+     */
+    private IUserAuthorizationLogic userAuthorizationLogic;
 }

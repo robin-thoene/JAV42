@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import javax.naming.AuthenticationException;
+
 /**
  * Logic regarding user authorization.
  */
@@ -27,7 +29,15 @@ public class UserAuthorizationLogic implements IUserAuthorizationLogic {
 
     @Override
     public UserReadModel authorizeAdmin(String userName, String passwordHash) throws UserAuthorizationException {
-        return null;
+        try {
+            var userToCheck = authenticateUser(userName, passwordHash);
+            if (!userToCheck.isAdmin()) {
+                throw new UserAuthorizationException();
+            }
+            return userToCheck;
+        } catch (UserAuthenticationException exception) {
+            throw new UserAuthorizationException();
+        }
     }
 
     @Autowired

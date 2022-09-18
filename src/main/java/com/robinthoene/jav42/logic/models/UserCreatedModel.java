@@ -48,5 +48,5 @@ public class UserCreatedModel extends UserReadModel {
     /**
      * Whether the user is an admin or not.
      */
-    private boolean isAdmin;
+    private boolean isAdmin = false;
 }

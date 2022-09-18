@@ -40,7 +40,7 @@ public class UserReadModel extends BaseModel {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
+
     /**
      * Retrieve the users login name.
      *
@@ -95,5 +95,5 @@ public class UserReadModel extends BaseModel {
     /**
      * Whether the user is an admin or not.
      */
-    private boolean isAdmin;
+    private boolean isAdmin = false;
 }

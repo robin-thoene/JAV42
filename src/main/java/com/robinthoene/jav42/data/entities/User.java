@@ -152,5 +152,5 @@ public class User {
      * Whether the user is an admin or not.
      */
     @Column
-    private boolean isAdmin;
+    private boolean isAdmin = false;
 }

@@ -95,5 +95,5 @@ public class UserCreateModel extends BaseModel {
     /**
      * Whether the user is an admin or not.
      */
-    private boolean isAdmin;
+    private boolean isAdmin = false;
 }
