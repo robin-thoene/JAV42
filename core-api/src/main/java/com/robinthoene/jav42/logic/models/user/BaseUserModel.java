@@ -1,28 +1,14 @@
-package com.robinthoene.jav42.logic.models;
+package com.robinthoene.jav42.logic.models.user;
+
+import com.robinthoene.jav42.logic.models.BaseModel;
+
+import javax.persistence.Column;
+import java.sql.Timestamp;
 
 /**
- * Represents a single user in the database.
+ * Model from that all user models must inherit.
  */
-public class UserCreateModel extends BaseModel {
-
-    /**
-     * Get the current value of the users first name.
-     *
-     * @return The users first name.
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
-    /**
-     * Set the current value for the users first name.
-     *
-     * @param firstName The new value for the users first name.
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
+public abstract class BaseUserModel extends BaseModel {
     /**
      * Get the current value of the users last name.
      *
@@ -42,21 +28,21 @@ public class UserCreateModel extends BaseModel {
     }
 
     /**
-     * Retrieve the users login name.
+     * Get the current value of the users first name.
      *
-     * @return The username.
+     * @return The users first name.
      */
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
     /**
-     * Set the users login name.
+     * Set the current value for the users first name.
      *
-     * @param userName The new username to use.
+     * @param firstName The new value for the users first name.
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     /**
@@ -78,19 +64,14 @@ public class UserCreateModel extends BaseModel {
     }
 
     /**
-     * The users first name.
-     */
-    private String firstName;
-
-    /**
      * The users last name.
      */
     private String lastName;
 
     /**
-     * The username.
+     * The users first name.
      */
-    private String userName;
+    private String firstName;
 
     /**
      * Whether the user is an admin or not.

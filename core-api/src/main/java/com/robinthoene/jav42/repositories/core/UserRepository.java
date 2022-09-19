@@ -3,15 +3,16 @@ package com.robinthoene.jav42.repositories.core;
 import com.robinthoene.jav42.logic.common.helper.PasswordHelper;
 import com.robinthoene.jav42.logic.interfaces.ICrudUserRepository;
 import com.robinthoene.jav42.logic.interfaces.IUserRepository;
-import com.robinthoene.jav42.logic.models.UserCreateModel;
-import com.robinthoene.jav42.logic.models.UserCreatedModel;
-import com.robinthoene.jav42.logic.models.UserReadModel;
-import com.robinthoene.jav42.logic.models.UserUpdateModel;
+import com.robinthoene.jav42.logic.models.user.UserCreateModel;
+import com.robinthoene.jav42.logic.models.user.UserCreatedModel;
+import com.robinthoene.jav42.logic.models.user.UserReadModel;
+import com.robinthoene.jav42.logic.models.user.UserUpdateModel;
 import com.robinthoene.jav42.repositories.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,10 @@ public class UserRepository implements IUserRepository {
         var hashedPassword = PasswordHelper.hashPassword(initialPassword);
         // Assign the password.
         userToCreate.setHashedPassword(hashedPassword);
+        // Update the timestamps.
+        var now = new Timestamp(System.currentTimeMillis());
+        userToCreate.setCreationTimestamp(now);
+        userToCreate.setLastUpdatedTimestamp(now);
         // Create the user.
         var user = crudUserRepository.save(userToCreate);
         // Map the created user to the corresponding model using the created entity and the used initial password.
@@ -66,6 +71,10 @@ public class UserRepository implements IUserRepository {
         // Persist the password and username.
         userToUpdate.setUserName(currentUser.getUserName());
         userToUpdate.setHashedPassword(currentUser.getHashedPassword());
+        // Set the last update timestamp.
+        userToUpdate.setLastUpdatedTimestamp(new Timestamp(System.currentTimeMillis()));
+        // Ensure the created timestamp stays the same.
+        userToUpdate.setCreationTimestamp(currentUser.getCreationTimestamp());
         // Update the user.
         var user = crudUserRepository.save(userToUpdate);
         var updatedUser = UserMapper.GetReadModel(user);

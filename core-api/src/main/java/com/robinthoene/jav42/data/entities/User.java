@@ -1,6 +1,7 @@
 package com.robinthoene.jav42.data.entities;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Represents a single user in the database.
@@ -118,6 +119,42 @@ public class User {
     }
 
     /**
+     * Get the creation timestamp.
+     *
+     * @return The creation timestamp.
+     */
+    public Timestamp getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
+    /**
+     * Set the creation timestamp.
+     *
+     * @param creationTimestamp The new creation timestamp.
+     */
+    public void setCreationTimestamp(Timestamp creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
+    }
+
+    /**
+     * Get the last update timestamp.
+     *
+     * @return The last update timestamp.
+     */
+    public Timestamp getLastUpdatedTimestamp() {
+        return lastUpdatedTimestamp;
+    }
+
+    /**
+     * Set the timestamp for last user update.
+     *
+     * @param lastUpdatedTimestamp The new last update timestamp.
+     */
+    public void setLastUpdatedTimestamp(Timestamp lastUpdatedTimestamp) {
+        this.lastUpdatedTimestamp = lastUpdatedTimestamp;
+    }
+
+    /**
      * The unique database identifier.
      */
     @Id
@@ -153,4 +190,17 @@ public class User {
      */
     @Column
     private boolean isAdmin = false;
+
+    /**
+     * The timestamp for the user creation.
+     */
+    @Column(nullable = false)
+    private Timestamp creationTimestamp = new Timestamp(System.currentTimeMillis());
+
+    /**
+     * The timestamp for the last user update.
+     */
+    @Column(nullable = false)
+    private Timestamp lastUpdatedTimestamp = new Timestamp(System.currentTimeMillis());
+    ;
 }
