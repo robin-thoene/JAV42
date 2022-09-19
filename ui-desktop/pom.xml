@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.robinthoene</groupId>
-    <artifactId>ui-desktop</artifactId>
+    <groupId>com.robinthoene.jav42</groupId>
+    <artifactId>uidesktop</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>ui-desktop</name>
 
@@ -60,7 +60,9 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.robinthoene.uidesktop/com.robinthoene.jav42.uidesktop.HelloApplication</mainClass>
+                            <mainClass>
+                                com.robinthoene.jav42.uidesktop/com.robinthoene.jav42.uidesktop.HelloApplication
+                            </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

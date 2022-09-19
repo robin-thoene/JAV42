@@ -1,4 +1,4 @@
-module com.robinthoene.uidesktop {
+module com.robinthoene.jav42.uidesktop {
     requires javafx.controls;
     requires javafx.fxml;
 
