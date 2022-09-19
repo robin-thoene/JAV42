@@ -2,10 +2,10 @@ package com.robinthoene.jav42.logic.core;
 
 import com.robinthoene.jav42.logic.interfaces.IUserLogic;
 import com.robinthoene.jav42.logic.interfaces.IUserRepository;
-import com.robinthoene.jav42.logic.models.user.UserCreateModel;
-import com.robinthoene.jav42.logic.models.user.UserCreatedModel;
-import com.robinthoene.jav42.logic.models.user.UserReadModel;
-import com.robinthoene.jav42.logic.models.user.UserUpdateModel;
+import com.robinthoene.jav42.models.user.UserCreateModel;
+import com.robinthoene.jav42.models.user.UserCreatedModel;
+import com.robinthoene.jav42.models.user.UserReadModel;
+import com.robinthoene.jav42.models.user.UserUpdateModel;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

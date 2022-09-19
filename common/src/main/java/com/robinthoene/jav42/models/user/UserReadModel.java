@@ -1,8 +1,5 @@
-package com.robinthoene.jav42.logic.models.user;
+package com.robinthoene.jav42.models.user;
 
-import com.robinthoene.jav42.logic.models.BaseModel;
-
-import javax.persistence.Column;
 import java.sql.Timestamp;
 
 /**
@@ -66,7 +63,6 @@ public class UserReadModel extends BaseUserModel {
     /**
      * The timestamp for the user creation.
      */
-    @Column(nullable = false)
     private Timestamp creationTimestamp;
 
     /**

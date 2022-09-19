@@ -1,9 +1,6 @@
-package com.robinthoene.jav42.logic.models.user;
+package com.robinthoene.jav42.models.user;
 
-import com.robinthoene.jav42.logic.models.BaseModel;
-
-import javax.persistence.Column;
-import java.sql.Timestamp;
+import com.robinthoene.jav42.models.BaseModel;
 
 /**
  * Model from that all user models must inherit.

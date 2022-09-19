@@ -2,7 +2,7 @@ package com.robinthoene.jav42.logic.interfaces;
 
 import com.robinthoene.jav42.logic.common.exceptions.UserAuthenticationException;
 import com.robinthoene.jav42.logic.common.exceptions.UserAuthorizationException;
-import com.robinthoene.jav42.logic.models.user.UserReadModel;
+import com.robinthoene.jav42.models.user.UserReadModel;
 import org.springframework.stereotype.Component;
 
 /**
