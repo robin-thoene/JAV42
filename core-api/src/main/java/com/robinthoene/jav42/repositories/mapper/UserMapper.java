@@ -1,10 +1,10 @@
 package com.robinthoene.jav42.repositories.mapper;
 
 import com.robinthoene.jav42.data.entities.User;
-import com.robinthoene.jav42.logic.models.UserCreateModel;
-import com.robinthoene.jav42.logic.models.UserCreatedModel;
-import com.robinthoene.jav42.logic.models.UserReadModel;
-import com.robinthoene.jav42.logic.models.UserUpdateModel;
+import com.robinthoene.jav42.logic.models.user.UserCreateModel;
+import com.robinthoene.jav42.logic.models.user.UserCreatedModel;
+import com.robinthoene.jav42.logic.models.user.UserReadModel;
+import com.robinthoene.jav42.logic.models.user.UserUpdateModel;
 
 /**
  * Provides methods to map user entities to models and vice versa.
@@ -24,6 +24,8 @@ public final class UserMapper {
         model.setFirstName(entity.getFirstName());
         model.setLastName(entity.getLastName());
         model.setAdmin(entity.isAdmin());
+        model.setCreationTimestamp(entity.getCreationTimestamp());
+        model.setLastUpdatedTimestamp(entity.getLastUpdatedTimestamp());
         return model;
     }
 
@@ -42,6 +44,8 @@ public final class UserMapper {
         model.setLastName(entity.getLastName());
         model.setPassword(password);
         model.setAdmin(entity.isAdmin());
+        model.setCreationTimestamp(entity.getCreationTimestamp());
+        model.setLastUpdatedTimestamp(entity.getLastUpdatedTimestamp());
         return model;
     }
 
@@ -58,6 +62,8 @@ public final class UserMapper {
         entity.setLastName(model.getLastName());
         entity.setFirstName(model.getFirstName());
         entity.setAdmin(model.isAdmin());
+        entity.setCreationTimestamp(model.getCreationTimestamp());
+        entity.setLastUpdatedTimestamp(model.getLastUpdatedTimestamp());
         return entity;
     }
 
