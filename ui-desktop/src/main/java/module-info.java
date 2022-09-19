@@ -3,6 +3,6 @@ module com.robinthoene.uidesktop {
     requires javafx.fxml;
 
 
-    opens com.robinthoene.uidesktop to javafx.fxml;
-    exports com.robinthoene.uidesktop;
+    opens com.robinthoene.jav42.uidesktop to javafx.fxml;
+    exports com.robinthoene.jav42.uidesktop;
 }
