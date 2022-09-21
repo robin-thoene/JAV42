@@ -8,6 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ * The view controller to display the login screen.
+ */
 public class LoginViewController {
 
     /**
