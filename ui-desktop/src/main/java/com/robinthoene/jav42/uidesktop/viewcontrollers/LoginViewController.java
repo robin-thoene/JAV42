@@ -1,12 +1,21 @@
 package com.robinthoene.jav42.uidesktop.viewcontrollers;
 
+import com.robinthoene.jav42.uidesktop.Application;
 import com.robinthoene.jav42.uidesktop.helpers.CoreApiHelper;
+import com.robinthoene.jav42.uidesktop.helpers.NavigationHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  * The view controller to display the login screen.
@@ -35,8 +44,13 @@ public class LoginViewController {
         var loginResult = CoreApiHelper.loginAsAdmin(userName, password);
         if (loginResult) {
             // The login was successful, display the application ui.
+            NavigationHelper.navigateToScene(this.loginButton, "users-view.fxml", null, null);
         } else {
             // The login was not successful, inform the user.
+            var alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login fehlgeschlagen");
+            alert.setHeaderText("Admin Login mit gegebenen Daten nicht möglich!");
+            alert.showAndWait();
         }
     }
 
