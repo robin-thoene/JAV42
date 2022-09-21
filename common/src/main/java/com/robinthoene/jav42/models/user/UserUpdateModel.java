@@ -1,6 +1,4 @@
-package com.robinthoene.jav42.logic.models.user;
-
-import com.robinthoene.jav42.logic.models.BaseModel;
+package com.robinthoene.jav42.models.user;
 
 /**
  * User model containing all properties that are allowed to be updated.

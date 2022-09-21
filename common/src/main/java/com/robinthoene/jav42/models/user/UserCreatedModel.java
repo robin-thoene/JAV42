@@ -1,4 +1,4 @@
-package com.robinthoene.jav42.logic.models.user;
+package com.robinthoene.jav42.models.user;
 
 /**
  * Specific model of a user to return after a user is created.

@@ -1,9 +1,6 @@
-package com.robinthoene.jav42.logic.models.user;
+package com.robinthoene.jav42.models.user;
 
-import com.robinthoene.jav42.logic.models.BaseModel;
-
-import javax.persistence.Column;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Represents a single user in the database.
@@ -32,7 +29,7 @@ public class UserReadModel extends BaseUserModel {
      *
      * @return The creation timestamp.
      */
-    public Timestamp getCreationTimestamp() {
+    public Date getCreationTimestamp() {
         return creationTimestamp;
     }
 
@@ -41,7 +38,7 @@ public class UserReadModel extends BaseUserModel {
      *
      * @param creationTimestamp The new creation timestamp.
      */
-    public void setCreationTimestamp(Timestamp creationTimestamp) {
+    public void setCreationTimestamp(Date creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
     }
 
@@ -50,7 +47,7 @@ public class UserReadModel extends BaseUserModel {
      *
      * @return The last update timestamp.
      */
-    public Timestamp getLastUpdatedTimestamp() {
+    public Date getLastUpdatedTimestamp() {
         return lastUpdatedTimestamp;
     }
 
@@ -59,20 +56,19 @@ public class UserReadModel extends BaseUserModel {
      *
      * @param lastUpdatedTimestamp The new last update timestamp.
      */
-    public void setLastUpdatedTimestamp(Timestamp lastUpdatedTimestamp) {
+    public void setLastUpdatedTimestamp(Date lastUpdatedTimestamp) {
         this.lastUpdatedTimestamp = lastUpdatedTimestamp;
     }
 
     /**
      * The timestamp for the user creation.
      */
-    @Column(nullable = false)
-    private Timestamp creationTimestamp;
+    private Date creationTimestamp;
 
     /**
      * The timestamp for the last user update.
      */
-    private Timestamp lastUpdatedTimestamp;
+    private Date lastUpdatedTimestamp;
 
     /**
      * The username.

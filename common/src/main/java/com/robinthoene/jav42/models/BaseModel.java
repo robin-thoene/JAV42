@@ -1,4 +1,4 @@
-package com.robinthoene.jav42.logic.models;
+package com.robinthoene.jav42.models;
 
 /**
  * Base model for database models.

@@ -1,16 +1,16 @@
-package com.robinthoene.jav42.logic.common.helper;
+package com.robinthoene.jav42.helpers;
 
 import org.passay.CharacterData;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.GermanCharacterData;
 import org.passay.PasswordGenerator;
+import org.springframework.beans.MethodInvocationException;
 
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import static org.springframework.beans.MethodInvocationException.ERROR_CODE;
 
 public final class PasswordHelper {
 
@@ -56,7 +56,7 @@ public final class PasswordHelper {
         // Define rule for special characters.
         var specialChars = new CharacterData() {
             public String getErrorCode() {
-                return ERROR_CODE;
+                return MethodInvocationException.ERROR_CODE;
             }
 
             public String getCharacters() {

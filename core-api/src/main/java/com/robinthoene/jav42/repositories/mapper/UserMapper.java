@@ -1,10 +1,12 @@
 package com.robinthoene.jav42.repositories.mapper;
 
 import com.robinthoene.jav42.data.entities.User;
-import com.robinthoene.jav42.logic.models.user.UserCreateModel;
-import com.robinthoene.jav42.logic.models.user.UserCreatedModel;
-import com.robinthoene.jav42.logic.models.user.UserReadModel;
-import com.robinthoene.jav42.logic.models.user.UserUpdateModel;
+import com.robinthoene.jav42.models.user.UserCreateModel;
+import com.robinthoene.jav42.models.user.UserCreatedModel;
+import com.robinthoene.jav42.models.user.UserReadModel;
+import com.robinthoene.jav42.models.user.UserUpdateModel;
+
+import java.sql.Timestamp;
 
 /**
  * Provides methods to map user entities to models and vice versa.
@@ -62,8 +64,8 @@ public final class UserMapper {
         entity.setLastName(model.getLastName());
         entity.setFirstName(model.getFirstName());
         entity.setAdmin(model.isAdmin());
-        entity.setCreationTimestamp(model.getCreationTimestamp());
-        entity.setLastUpdatedTimestamp(model.getLastUpdatedTimestamp());
+        entity.setCreationTimestamp((Timestamp) model.getCreationTimestamp());
+        entity.setLastUpdatedTimestamp((Timestamp) model.getLastUpdatedTimestamp());
         return entity;
     }
 
