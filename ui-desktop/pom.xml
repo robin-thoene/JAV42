@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.robinthoene.jav42.uidesktop/com.robinthoene.jav42.uidesktop.HelloApplication
+                                com.robinthoene.jav42.uidesktop/com.robinthoene.jav42.uidesktop.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

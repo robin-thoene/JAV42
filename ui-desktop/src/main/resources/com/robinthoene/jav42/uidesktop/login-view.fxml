@@ -1,0 +1,24 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.robinthoene.jav42.uidesktop.LoginViewController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <VBox maxWidth="200">
+        <Label text="Username"/>
+        <TextField fx:id="userNameInput"/>
+    </VBox>
+    <VBox maxWidth="200">
+        <Label text="Password"/>
+        <PasswordField fx:id="userPasswordInput"/>
+    </VBox>
+    <VBox maxWidth="200">
+        <Button fx:id="loginButton" text="Login" minWidth="200" />
+    </VBox>
+</VBox>
