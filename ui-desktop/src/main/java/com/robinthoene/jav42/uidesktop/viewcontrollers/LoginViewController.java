@@ -18,7 +18,6 @@ public class LoginViewController {
         loginButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                // TODO: Try to login the user.
                 loginUser();
             }
         });
