@@ -14,11 +14,11 @@
 
     <TableView fx:id="userTable">
         <columns>
-            <TableColumn text="Login-Name"/>
-            <TableColumn text="Vorname"/>
-            <TableColumn text="Nachname"/>
-            <TableColumn text="Erstellt"/>
-            <TableColumn text="Zuletzt geändert"/>
+            <TableColumn fx:id="userName" text="Login-Name"/>
+            <TableColumn fx:id="firstName" text="Vorname"/>
+            <TableColumn fx:id="lastName" text="Nachname"/>
+            <TableColumn fx:id="creationTimestamp" text="Erstellt"/>
+            <TableColumn fx:id="lastUpdatedTimestamp" text="Zuletzt geändert"/>
         </columns>
     </TableView>
 </VBox>
