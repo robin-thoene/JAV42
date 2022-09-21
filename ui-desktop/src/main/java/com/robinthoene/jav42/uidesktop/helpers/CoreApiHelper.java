@@ -1,5 +1,7 @@
 package com.robinthoene.jav42.uidesktop.helpers;
 
+import com.robinthoene.jav42.helpers.PasswordHelper;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -20,7 +22,7 @@ public final class CoreApiHelper {
     public static void loginAsAdmin(String userName, String password) {
         try {
             // Hash the password before sending.
-            var hashedPassword = "";
+            var hashedPassword = PasswordHelper.hashPassword(password);
             // Define the admin authorization request.
             var request = HttpRequest
                     .newBuilder(new URI(baseUrl + "user/authorize-as-admin"))
@@ -28,11 +30,13 @@ public final class CoreApiHelper {
                     .header("password", hashedPassword)
                     .POST(HttpRequest.BodyPublishers.noBody())
                     .build();
-            // Create http client to send the request.
-            var httpClient = HttpClient.newHttpClient();
             // Send the request.
             var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            // TODO: Handle the response.
+            if (response.statusCode() == 200) {
+                // The authorization request succeeded, store information for further requests.
+                requestUserName = userName;
+                requestHashedPassword = hashedPassword;
+            }
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -41,6 +45,18 @@ public final class CoreApiHelper {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * The username to use for API requests.
+     */
+    private static String requestUserName;
+
+    /**
+     * The hashed password to use for API requests.
+     */
+    private static String requestHashedPassword;
+
+    private static HttpClient httpClient;
 
     /**
      * TODO: retrieve this value from staging config.
