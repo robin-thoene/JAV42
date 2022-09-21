@@ -1,6 +1,6 @@
 package com.robinthoene.jav42.repositories.core;
 
-import com.robinthoene.jav42.logic.common.helper.PasswordHelper;
+import com.robinthoene.jav42.helpers.PasswordHelper;
 import com.robinthoene.jav42.logic.interfaces.ICrudUserRepository;
 import com.robinthoene.jav42.logic.interfaces.IUserRepository;
 import com.robinthoene.jav42.models.user.UserCreateModel;

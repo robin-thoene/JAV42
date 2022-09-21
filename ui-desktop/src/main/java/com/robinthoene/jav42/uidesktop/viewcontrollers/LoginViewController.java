@@ -1,4 +1,4 @@
-package com.robinthoene.jav42.uidesktop;
+package com.robinthoene.jav42.uidesktop.viewcontrollers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
