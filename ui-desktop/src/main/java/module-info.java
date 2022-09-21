@@ -5,8 +5,6 @@ module com.robinthoene.jav42.uidesktop {
     requires com.robinthoene.jav42.common;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
-    requires java.sql;
-
 
     opens com.robinthoene.jav42.uidesktop to javafx.fxml;
     exports com.robinthoene.jav42.uidesktop;

@@ -1,5 +1,4 @@
 module com.robinthoene.jav42.common {
-    requires java.sql;
     requires passay;
     requires spring.beans;
     requires java.xml.bind;
