@@ -30,7 +30,12 @@ public class LoginViewController {
     private void loginUser() {
         var userName = userNameInput.getText();
         var password = userPasswordInput.getText();
-        CoreApiHelper.loginAsAdmin(userName, password);
+        var loginResult = CoreApiHelper.loginAsAdmin(userName, password);
+        if (loginResult) {
+            // The login was successful, display the application ui.
+        } else {
+            // The login was not successful, inform the user.
+        }
     }
 
     /**

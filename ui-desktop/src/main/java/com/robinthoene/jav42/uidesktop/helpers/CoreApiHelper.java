@@ -18,8 +18,9 @@ public final class CoreApiHelper {
      *
      * @param userName The username.
      * @param password The password.
+     * @return True if the login was successful, false if not.
      */
-    public static void loginAsAdmin(String userName, String password) {
+    public static boolean loginAsAdmin(String userName, String password) {
         try {
             // Hash the password before sending.
             var hashedPassword = PasswordHelper.hashPassword(password);
@@ -31,12 +32,14 @@ public final class CoreApiHelper {
                     .POST(HttpRequest.BodyPublishers.noBody())
                     .build();
             // Send the request.
-            var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            var response = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 200) {
                 // The authorization request succeeded, store information for further requests.
                 requestUserName = userName;
                 requestHashedPassword = hashedPassword;
+                return true;
             }
+            return false;
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -44,6 +47,19 @@ public final class CoreApiHelper {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Retrieve a lazy instance of the http client to use in the application.
+     *
+     * @return The http client.
+     */
+    private static HttpClient getHttpClient() {
+        if (_httpClient != null) {
+            return _httpClient;
+        }
+        _httpClient = HttpClient.newHttpClient();
+        return _httpClient;
     }
 
     /**
@@ -56,7 +72,10 @@ public final class CoreApiHelper {
      */
     private static String requestHashedPassword;
 
-    private static HttpClient httpClient;
+    /**
+     * The lazy loaded http client.
+     */
+    private static HttpClient _httpClient;
 
     /**
      * TODO: retrieve this value from staging config.
