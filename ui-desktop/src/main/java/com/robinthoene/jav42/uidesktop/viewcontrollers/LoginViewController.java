@@ -1,5 +1,6 @@
 package com.robinthoene.jav42.uidesktop.viewcontrollers;
 
+import com.robinthoene.jav42.uidesktop.helpers.CoreApiHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,9 +27,10 @@ public class LoginViewController {
     /**
      * The method to use for user login.
      */
-    private void loginUser(){
+    private void loginUser() {
         var userName = userNameInput.getText();
         var password = userPasswordInput.getText();
+        CoreApiHelper.loginAsAdmin(userName, password);
     }
 
     /**

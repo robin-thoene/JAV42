@@ -1,6 +1,7 @@
 module com.robinthoene.jav42.uidesktop {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.net.http;
 
 
     opens com.robinthoene.jav42.uidesktop to javafx.fxml;
