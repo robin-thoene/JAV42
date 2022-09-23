@@ -6,19 +6,23 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 
+<?import javafx.scene.control.Button?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.robinthoene.jav42.uidesktop.viewcontrollers.UsersViewController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
+    <VBox alignment="CENTER_RIGHT">
+        <Button fx:id="addNewUserButton" text="+ Neuen Nutzer anlegen"/>
+    </VBox>
     <TableView fx:id="userTable">
         <columns>
-            <TableColumn fx:id="userName" text="Login-Name"/>
+            <TableColumn fx:id="userName" text="Nutzername"/>
             <TableColumn fx:id="firstName" text="Vorname"/>
             <TableColumn fx:id="lastName" text="Nachname"/>
-            <TableColumn fx:id="creationTimestamp" text="Erstellt"/>
-            <TableColumn fx:id="lastUpdatedTimestamp" text="Zuletzt geändert"/>
+            <TableColumn fx:id="creationTimestamp" text="Erstellungsdatum"/>
+            <TableColumn fx:id="lastUpdatedTimestamp" text="Letzte Änderung"/>
         </columns>
     </TableView>
 </VBox>
