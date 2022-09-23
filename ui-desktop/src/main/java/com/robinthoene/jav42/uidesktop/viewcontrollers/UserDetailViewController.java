@@ -1,7 +1,9 @@
 package com.robinthoene.jav42.uidesktop.viewcontrollers;
 
 import com.robinthoene.jav42.models.user.UserCreateModel;
+import com.robinthoene.jav42.uidesktop.enumerations.UserDetailViewMode;
 import com.robinthoene.jav42.uidesktop.helpers.CoreApiHelper;
+import com.robinthoene.jav42.uidesktop.helpers.NavigationHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,7 +27,21 @@ public class UserDetailViewController {
         actionButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                createNewUser();
+                switch (mode) {
+                    case EDIT:
+                        break;
+                    case VIEW:
+                        NavigationHelper.navigateToScene(actionButton, "users-view.fxml", null, null);
+                        break;
+                    case CREATE:
+                        createNewUser();
+                        actionButton.setText("Zurück");
+                        mode = UserDetailViewMode.VIEW;
+                        break;
+                    default:
+                        break;
+                }
+
             }
         });
     }
@@ -34,6 +50,10 @@ public class UserDetailViewController {
      * Action to create a new user.
      */
     private void createNewUser() {
+        if (userName.getText().equals("") || firstName.getText().equals("") || lastName.getText().equals("")        ) {
+            // TODO: display error.
+            return;
+        }
         var userCreateModel = new UserCreateModel();
         userCreateModel.setUserName(userName.getText());
         userCreateModel.setFirstName(firstName.getText());
@@ -46,6 +66,11 @@ public class UserDetailViewController {
         creationTimestamp.setText(result.getCreationTimestamp().toString());
         lastUpdateTimestamp.setText(result.getLastUpdatedTimestamp().toString());
     }
+
+    /**
+     * The current mode of the view.
+     */
+    private UserDetailViewMode mode = UserDetailViewMode.CREATE;
 
     /**
      * The username of the displayed user.
