@@ -128,6 +128,47 @@ public final class CoreApiHelper {
     }
 
     /**
+     * Delete a user.
+     *
+     * @param userId The users unique database identifier.
+     * @return True if the deletion was successful, false if not.
+     */
+    public static boolean deleteUser(long userId) {
+        try {
+            var request = HttpRequest
+                    .newBuilder()
+                    .header("user-name", requestUserName)
+                    .header("password", requestHashedPassword)
+                    .DELETE()
+                    .uri(new URI(baseUrl + "user/" + userId))
+                    .build();
+            // Send the request.
+            var response = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() == 200) {
+                return true;
+            }
+            return false;
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        } catch (JsonMappingException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Retrieve the username of the logged-in user.
+     *
+     * @return The username of the logged-in user.
+     */
+    public static String getMe() {
+        return requestUserName;
+    }
+
+    /**
      * Retrieve a lazy instance of the http client to use in the application.
      *
      * @return The http client.

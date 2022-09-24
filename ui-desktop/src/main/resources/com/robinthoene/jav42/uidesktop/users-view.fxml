@@ -21,8 +21,10 @@
             <TableColumn fx:id="userName" text="Nutzername"/>
             <TableColumn fx:id="firstName" text="Vorname"/>
             <TableColumn fx:id="lastName" text="Nachname"/>
+            <TableColumn fx:id="isAdmin" text="Rolle"/>
             <TableColumn fx:id="creationTimestamp" text="Erstellungsdatum"/>
             <TableColumn fx:id="lastUpdatedTimestamp" text="Letzte Änderung"/>
+            <TableColumn fx:id="actions" text="Aktionen"/>
         </columns>
     </TableView>
 </VBox>

@@ -6,6 +6,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.CheckBox?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.robinthoene.jav42.uidesktop.viewcontrollers.UserDetailViewController">
     <padding>
@@ -13,7 +15,10 @@
     </padding>
 
     <VBox maxWidth="200">
-        <Label>Nutzername</Label>
+        <HBox spacing="30">
+            <Label>Nutzername</Label>
+            <CheckBox fx:id="isAdmin" text="Admin"/>
+        </HBox>
         <TextField fx:id="userName"/>
     </VBox>
     <VBox maxWidth="200">
