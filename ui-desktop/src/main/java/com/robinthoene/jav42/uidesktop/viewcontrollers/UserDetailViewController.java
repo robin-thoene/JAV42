@@ -57,6 +57,8 @@ public class UserDetailViewController {
                 }
                 activateEdit.setVisible(false);
                 saveButton.setVisible(true);
+                initialPassword.setVisible(false);
+                initialPasswordLabel.setVisible(false);
             }
         });
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -83,6 +85,8 @@ public class UserDetailViewController {
                 leave();
             }
         });
+        initialPassword.setVisible(false);
+        initialPasswordLabel.setVisible(false);
     }
 
     /**
@@ -136,7 +140,10 @@ public class UserDetailViewController {
             creationTimestamp.setText(result.getCreationTimestamp().toString());
             lastUpdateTimestamp.setText(result.getLastUpdatedTimestamp().toString());
             isAdmin.setSelected(result.isAdmin());
+            initialPassword.setText(result.getPassword());
             userId = result.getId();
+            initialPassword.setVisible(true);
+            initialPasswordLabel.setVisible(true);
         } catch (Exception ex) {
             var alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erstellung fehlgeschlagen");
@@ -241,4 +248,16 @@ public class UserDetailViewController {
      */
     @FXML
     private Button activateEdit;
+
+    /**
+     * The label to display the initial password for new created users.
+     */
+    @FXML
+    private TextField initialPassword;
+
+    /**
+     * The label above the initial password for new created users.
+     */
+    @FXML
+    private Label initialPasswordLabel;
 }

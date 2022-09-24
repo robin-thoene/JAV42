@@ -41,6 +41,10 @@
         <Label fx:id="lastUpdateTimestamp"/>
     </VBox>
     <VBox maxWidth="200">
+        <Label fx:id="initialPasswordLabel">Initiales Passwort</Label>
+        <TextField editable="false" fx:id="initialPassword"/>
+    </VBox>
+    <VBox maxWidth="200">
         <Button fx:id="saveButton" minWidth="200" text="Speichern"/>
     </VBox>
     <VBox maxWidth="200">
