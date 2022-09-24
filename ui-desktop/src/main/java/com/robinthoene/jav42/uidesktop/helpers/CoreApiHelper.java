@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.robinthoene.jav42.models.user.UserUpdateModel;
 
 /**
  * Helper to access the core api.
@@ -114,6 +115,42 @@ public final class CoreApiHelper {
             // Parse the response.
             var body = response.body();
             var data = mapper.readValue(body, UserCreatedModel.class);
+            // Return the result.
+            return data;
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        } catch (JsonMappingException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Updates a user in the database.
+     *
+     * @param model The model of the user to update.
+     * @return The updated user.
+     */
+    public static UserReadModel updateUser(UserUpdateModel model) {
+        try {
+            var mapper = new ObjectMapper();
+            var jsonBody = mapper.writeValueAsString(model);
+            var request = HttpRequest
+                    .newBuilder()
+                    .header("Content-type", "application/json")
+                    .header("user-name", requestUserName)
+                    .header("password", requestHashedPassword)
+                    .PUT(HttpRequest.BodyPublishers.ofString(jsonBody))
+                    .uri(new URI(baseUrl + "user"))
+                    .build();
+            // Send the request.
+            var response = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            // Parse the response.
+            var body = response.body();
+            var data = mapper.readValue(body, UserReadModel.class);
             // Return the result.
             return data;
         } catch (URISyntaxException e) {

@@ -38,6 +38,9 @@
         <Label fx:id="lastUpdateTimestamp"/>
     </VBox>
     <VBox maxWidth="200">
-        <Button fx:id="actionButton" minWidth="200" text="Speichern"/>
+        <Button fx:id="saveButton" minWidth="200" text="Speichern"/>
+    </VBox>
+    <VBox maxWidth="200">
+        <Button fx:id="backButton" minWidth="200" text="Zurück"/>
     </VBox>
 </VBox>

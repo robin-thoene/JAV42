@@ -50,21 +50,22 @@ public final class NavigationHelper {
      * @param height    The requested window height.
      */
     public static void navigateToUserDetailView(Node node, String sceneName, UserReadModel user, Optional<Double> width, Optional<Double> height) {
-        // Get the stage based of the provided node.
-        var stage = (Stage) node.getScene().getWindow();
-        // Load the desired scene.
-        var fxmlLoader = new FXMLLoader(Application.class.getResource(sceneName));
-        // Get the desired height and width.
-        var widthToUse = width == null ? defaultWindowWidth : width;
-        var heightToUse = height == null ? defaultWindowHeight : height;
-        if (user != null) {
-            // Pass the user as param.
-            var viewController = (UserDetailViewController) fxmlLoader.getController();
-            viewController.initData(user);
-        }
         try {
+            // Get the stage based of the provided node.
+            var stage = (Stage) node.getScene().getWindow();
+            // Get the desired height and width.
+            var widthToUse = width == null ? defaultWindowWidth : width;
+            var heightToUse = height == null ? defaultWindowHeight : height;
+            // Load the desired scene.
+            var fxmlLoader = new FXMLLoader(Application.class.getResource(sceneName));
+            var targetScene = new Scene(fxmlLoader.load(), (double) widthToUse, (double) heightToUse);
+            if (user != null) {
+                // Pass the user as param.
+                var viewController = (UserDetailViewController) fxmlLoader.getController();
+                viewController.initData(user);
+            }
             // Try to navigate to the scene.
-            stage.setScene(new Scene(fxmlLoader.load(), (double) widthToUse, (double) heightToUse));
+            stage.setScene(targetScene);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
