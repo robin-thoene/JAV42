@@ -1,6 +1,10 @@
 package com.robinthoene.jav42.uidesktop.helpers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.robinthoene.jav42.helpers.PasswordHelper;
+import com.robinthoene.jav42.models.user.UserCreateModel;
+import com.robinthoene.jav42.models.user.UserCreatedModel;
 import com.robinthoene.jav42.models.user.UserReadModel;
 
 import java.io.IOException;
@@ -79,6 +83,42 @@ public final class CoreApiHelper {
             // Return the result.
             return data;
         } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Creates a new user in the database.
+     *
+     * @param model The model of the user to create.
+     * @return The created user.
+     */
+    public static UserCreatedModel createUser(UserCreateModel model) {
+        try {
+            var mapper = new ObjectMapper();
+            var jsonBody = mapper.writeValueAsString(model);
+            var request = HttpRequest
+                    .newBuilder()
+                    .header("Content-type", "application/json")
+                    .header("user-name", requestUserName)
+                    .header("password", requestHashedPassword)
+                    .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                    .uri(new URI(baseUrl + "user"))
+                    .build();
+            // Send the request.
+            var response = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            // Parse the response.
+            var body = response.body();
+            var data = mapper.readValue(body, UserCreatedModel.class);
+            // Return the result.
+            return data;
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        } catch (JsonMappingException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
