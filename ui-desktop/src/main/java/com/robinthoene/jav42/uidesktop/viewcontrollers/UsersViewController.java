@@ -60,7 +60,7 @@ public class UsersViewController {
                         editButton.setOnAction((ActionEvent event) -> {
                             var data = getTableView().getItems().get(getIndex());
                             // Open the edit user menu.
-                            NavigationHelper.navigateToScene(editButton, "user-detail-view.fxml", null, null);
+                            NavigationHelper.navigateToUserDetailView(editButton, "user-detail-view.fxml", data, null, null);
                         });
                     }
 

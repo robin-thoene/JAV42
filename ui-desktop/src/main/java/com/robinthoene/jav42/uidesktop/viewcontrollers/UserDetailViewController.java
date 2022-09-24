@@ -1,6 +1,7 @@
 package com.robinthoene.jav42.uidesktop.viewcontrollers;
 
 import com.robinthoene.jav42.models.user.UserCreateModel;
+import com.robinthoene.jav42.models.user.UserReadModel;
 import com.robinthoene.jav42.uidesktop.enumerations.UserDetailViewMode;
 import com.robinthoene.jav42.uidesktop.helpers.CoreApiHelper;
 import com.robinthoene.jav42.uidesktop.helpers.NavigationHelper;
@@ -19,6 +20,11 @@ import java.util.Date;
  * Can be used to view, create or edit.
  */
 public class UserDetailViewController {
+
+    public void initData(UserReadModel user) {
+        // TODO: handle
+    }
+
 
     /**
      * The method that is called on initialization.
