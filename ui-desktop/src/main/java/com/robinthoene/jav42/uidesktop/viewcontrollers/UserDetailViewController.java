@@ -9,10 +9,7 @@ import com.robinthoene.jav42.uidesktop.helpers.NavigationHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 /**
  * The view controller to display information about a single user.
@@ -120,7 +117,10 @@ public class UserDetailViewController {
      */
     private void createNewUser() {
         if (userName.getText().equals("") || firstName.getText().equals("") || lastName.getText().equals("")) {
-            // TODO: display error.
+            var alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erstellung nicht möglich");
+            alert.setHeaderText("Nicht alle Pflichtfelder wurden ausgefüllt.");
+            alert.showAndWait();
             return;
         }
         var userCreateModel = new UserCreateModel();
@@ -128,14 +128,21 @@ public class UserDetailViewController {
         userCreateModel.setFirstName(firstName.getText());
         userCreateModel.setLastName(lastName.getText());
         userCreateModel.setAdmin(isAdmin.isSelected());
-        var result = CoreApiHelper.createUser(userCreateModel);
-        userName.setText(result.getUserName());
-        firstName.setText(result.getFirstName());
-        lastName.setText(result.getLastName());
-        creationTimestamp.setText(result.getCreationTimestamp().toString());
-        lastUpdateTimestamp.setText(result.getLastUpdatedTimestamp().toString());
-        isAdmin.setSelected(result.isAdmin());
-        userId = result.getId();
+        try {
+            var result = CoreApiHelper.createUser(userCreateModel);
+            userName.setText(result.getUserName());
+            firstName.setText(result.getFirstName());
+            lastName.setText(result.getLastName());
+            creationTimestamp.setText(result.getCreationTimestamp().toString());
+            lastUpdateTimestamp.setText(result.getLastUpdatedTimestamp().toString());
+            isAdmin.setSelected(result.isAdmin());
+            userId = result.getId();
+        } catch (Exception ex) {
+            var alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erstellung fehlgeschlagen");
+            alert.setHeaderText("Ein unerwarteter Fehler ist aufgetreten.");
+            alert.showAndWait();
+        }
     }
 
     /**
@@ -143,7 +150,10 @@ public class UserDetailViewController {
      */
     private void updateUser() {
         if (userName.getText().equals("") || firstName.getText().equals("") || lastName.getText().equals("")) {
-            // TODO: display error.
+            var alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Aktualisierung nich möglich");
+            alert.setHeaderText("Nicht alle Pflichtfelder wurden ausgefüllt.");
+            alert.showAndWait();
             return;
         }
         var userUpdateModel = new UserUpdateModel();
@@ -151,13 +161,21 @@ public class UserDetailViewController {
         userUpdateModel.setAdmin(isAdmin.isSelected());
         userUpdateModel.setFirstName(firstName.getText());
         userUpdateModel.setLastName(lastName.getText());
-        var result = CoreApiHelper.updateUser(userUpdateModel);
-        userName.setText(result.getUserName());
-        firstName.setText(result.getFirstName());
-        lastName.setText(result.getLastName());
-        creationTimestamp.setText(result.getCreationTimestamp().toString());
-        lastUpdateTimestamp.setText(result.getLastUpdatedTimestamp().toString());
-        isAdmin.setSelected(result.isAdmin());
+        try {
+
+            var result = CoreApiHelper.updateUser(userUpdateModel);
+            userName.setText(result.getUserName());
+            firstName.setText(result.getFirstName());
+            lastName.setText(result.getLastName());
+            creationTimestamp.setText(result.getCreationTimestamp().toString());
+            lastUpdateTimestamp.setText(result.getLastUpdatedTimestamp().toString());
+            isAdmin.setSelected(result.isAdmin());
+        } catch (Exception ex) {
+            var alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Aktualisierung fehlgeschlagen");
+            alert.setHeaderText("Ein unerwarteter Fehler ist aufgetreten.");
+            alert.showAndWait();
+        }
     }
 
     /**
