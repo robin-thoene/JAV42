@@ -83,7 +83,10 @@ public class UsersViewController {
                                 // Remove the user from the table.
                                 getTableView().getItems().remove(data);
                             } else {
-                                // TODO: Display error message.
+                                var alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Löschung fehlgeschlagen");
+                                alert.setHeaderText("Ein unerwarteter Fehler ist aufgetreten.");
+                                alert.showAndWait();
                             }
                         });
                     }
