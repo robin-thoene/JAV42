@@ -14,6 +14,9 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
+    <HBox minWidth="300" alignment="CENTER_RIGHT">
+        <Button fx:id="activateEdit" text="Bearbeiten aktivieren"/>
+    </HBox>
     <VBox maxWidth="200">
         <HBox spacing="70">
             <Label>Nutzername</Label>

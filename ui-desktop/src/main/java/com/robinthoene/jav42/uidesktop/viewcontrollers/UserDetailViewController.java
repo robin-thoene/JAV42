@@ -44,19 +44,35 @@ public class UserDetailViewController {
      */
     @FXML
     private void initialize() {
+        activateEdit.setVisible(false);
+        activateEdit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (mode != UserDetailViewMode.EDIT) {
+                    mode = UserDetailViewMode.EDIT;
+                }
+                userName.setDisable(true);
+                firstName.setDisable(false);
+                lastName.setDisable(false);
+                var me = CoreApiHelper.getMe();
+                if (!userName.getText().equals(me)) {
+                    isAdmin.setDisable(false);
+                }
+                activateEdit.setVisible(false);
+                saveButton.setVisible(true);
+            }
+        });
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 switch (mode) {
                     case EDIT:
                         updateUser();
-                        saveButton.setVisible(false);
-                        mode = UserDetailViewMode.VIEW;
+                        setToViewMode();
                         break;
                     case CREATE:
                         createNewUser();
-                        saveButton.setVisible(false);
-                        mode = UserDetailViewMode.VIEW;
+                        setToViewMode();
                         break;
                     default:
                         break;
@@ -83,8 +99,20 @@ public class UserDetailViewController {
         userName.setDisable(false);
         // Reset user id.
         userId = null;
+        // Reset buttons.
+        activateEdit.setVisible(false);
         // Leave view.
         NavigationHelper.navigateToScene(saveButton, "users-view.fxml", null, null);
+    }
+
+    private void setToViewMode() {
+        saveButton.setVisible(false);
+        mode = UserDetailViewMode.VIEW;
+        activateEdit.setVisible(true);
+        userName.setDisable(true);
+        firstName.setDisable(true);
+        lastName.setDisable(true);
+        isAdmin.setDisable(true);
     }
 
     /**
@@ -107,6 +135,7 @@ public class UserDetailViewController {
         creationTimestamp.setText(result.getCreationTimestamp().toString());
         lastUpdateTimestamp.setText(result.getLastUpdatedTimestamp().toString());
         isAdmin.setSelected(result.isAdmin());
+        userId = result.getId();
     }
 
     /**
@@ -188,4 +217,10 @@ public class UserDetailViewController {
      */
     @FXML
     private Button backButton;
+
+    /**
+     * The button to activate edit mode.
+     */
+    @FXML
+    private Button activateEdit;
 }
