@@ -14,8 +14,11 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
+    <HBox minWidth="300" alignment="CENTER_RIGHT">
+        <Button fx:id="activateEdit" text="Bearbeiten aktivieren"/>
+    </HBox>
     <VBox maxWidth="200">
-        <HBox spacing="30">
+        <HBox spacing="70">
             <Label>Nutzername</Label>
             <CheckBox fx:id="isAdmin" text="Admin"/>
         </HBox>
@@ -38,6 +41,9 @@
         <Label fx:id="lastUpdateTimestamp"/>
     </VBox>
     <VBox maxWidth="200">
-        <Button fx:id="actionButton" minWidth="200" text="Speichern"/>
+        <Button fx:id="saveButton" minWidth="200" text="Speichern"/>
+    </VBox>
+    <VBox maxWidth="200">
+        <Button fx:id="backButton" minWidth="200" text="Zurück"/>
     </VBox>
 </VBox>
