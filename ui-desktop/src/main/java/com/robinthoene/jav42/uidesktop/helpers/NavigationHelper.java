@@ -39,10 +39,10 @@ public final class NavigationHelper {
     /**
      * The default width of the application.
      */
-    private static Double defaultWindowWidth = 800.0;
+    private static Double defaultWindowWidth = 1200.0;
 
     /**
      * The default height of the application.
      */
-    private static Double defaultWindowHeight = 500.0;
+    private static Double defaultWindowHeight = 600.0;
 }

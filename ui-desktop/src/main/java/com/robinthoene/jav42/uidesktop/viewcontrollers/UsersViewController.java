@@ -54,6 +54,16 @@ public class UsersViewController {
             @Override
             public TableCell<UserReadModel, Void> call(TableColumn<UserReadModel, Void> param) {
                 var cell = new TableCell<UserReadModel, Void>() {
+                    private final Button editButton = new Button("Bearbeiten");
+
+                    {
+                        editButton.setOnAction((ActionEvent event) -> {
+                            var data = getTableView().getItems().get(getIndex());
+                            // Open the edit user menu.
+                            NavigationHelper.navigateToScene(editButton, "user-detail-view.fxml", null, null);
+                        });
+                    }
+
                     private final Button deleteButton = new Button("Löschen");
 
                     {
@@ -78,13 +88,20 @@ public class UsersViewController {
                         });
                     }
 
+                    private final HBox container = new HBox();
+
+                    {
+                        container.setSpacing(30);
+                        container.getChildren().addAll(editButton, deleteButton);
+                    }
+
                     @Override
                     public void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
                         if (empty) {
                             setGraphic(null);
                         } else {
-                            setGraphic(deleteButton);
+                            setGraphic(container);
                         }
                     }
                 };

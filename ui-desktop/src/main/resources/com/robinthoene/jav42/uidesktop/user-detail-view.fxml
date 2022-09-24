@@ -15,7 +15,7 @@
     </padding>
 
     <VBox maxWidth="200">
-        <HBox spacing="30">
+        <HBox spacing="70">
             <Label>Nutzername</Label>
             <CheckBox fx:id="isAdmin" text="Admin"/>
         </HBox>
