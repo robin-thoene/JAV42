@@ -23,6 +23,7 @@
             <TableColumn fx:id="lastName" text="Nachname"/>
             <TableColumn fx:id="creationTimestamp" text="Erstellungsdatum"/>
             <TableColumn fx:id="lastUpdatedTimestamp" text="Letzte Änderung"/>
+            <TableColumn fx:id="actions" text="Aktionen"/>
         </columns>
     </TableView>
 </VBox>

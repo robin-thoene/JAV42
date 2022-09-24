@@ -7,12 +7,16 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * The view controller to display the table of all users.
@@ -37,6 +41,48 @@ public class UsersViewController {
         lastName.setCellValueFactory(new PropertyValueFactory<UserReadModel, String>("lastName"));
         lastUpdatedTimestamp.setCellValueFactory(new PropertyValueFactory<UserReadModel, Date>("lastUpdatedTimestamp"));
         creationTimestamp.setCellValueFactory(new PropertyValueFactory<UserReadModel, Date>("creationTimestamp"));
+        // Init the action column.
+        actions.setCellFactory(new Callback<TableColumn<UserReadModel, Void>, TableCell<UserReadModel, Void>>() {
+            @Override
+            public TableCell<UserReadModel, Void> call(TableColumn<UserReadModel, Void> param) {
+                var cell = new TableCell<UserReadModel, Void>() {
+                    private final Button deleteButton = new Button("Löschen");
+
+                    {
+                        deleteButton.setOnAction((ActionEvent event) -> {
+                            var data = getTableView().getItems().get(getIndex());
+                            var me = CoreApiHelper.getMe();
+                            if (data.getUserName().equals(me)) {
+                                // Inform the user that it is not allowed as admin to delete yourself at the moment.
+                                var alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Löschung nicht möglich");
+                                alert.setHeaderText("Es ist momentan nicht vorgesehen, dass sich ein Admin selbst löscht.");
+                                alert.showAndWait();
+                                return;
+                            }
+                            var wasDeletionSuccessful = deleteUser(data.getId());
+                            if (wasDeletionSuccessful) {
+                                // Remove the user from the table.
+                                getTableView().getItems().remove(data);
+                            } else {
+                                // TODO: Display error message.
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(deleteButton);
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
         // Get all available users.
         var availableUsers = CoreApiHelper.getAllUsers();
         // Convert to observable list.
@@ -50,6 +96,17 @@ public class UsersViewController {
      */
     private void openUserCreation() {
         NavigationHelper.navigateToScene(addNewUserButton, "user-detail-view.fxml", null, null);
+    }
+
+    /**
+     * Delete a user.
+     *
+     * @param userId The unique identifier of the user.
+     * @return True if the deletion was successful, false if not.
+     */
+    private boolean deleteUser(long userId) {
+        var result = CoreApiHelper.deleteUser(userId);
+        return result;
     }
 
     /**
@@ -93,4 +150,10 @@ public class UsersViewController {
      */
     @FXML
     private TableColumn<UserReadModel, Date> lastUpdatedTimestamp;
+
+    /**
+     * The column that offers actions.
+     */
+    @FXML
+    private TableColumn<UserReadModel, Void> actions;
 }
