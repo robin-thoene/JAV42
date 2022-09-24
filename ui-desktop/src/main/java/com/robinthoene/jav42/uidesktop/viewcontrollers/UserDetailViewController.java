@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -50,7 +51,7 @@ public class UserDetailViewController {
      * Action to create a new user.
      */
     private void createNewUser() {
-        if (userName.getText().equals("") || firstName.getText().equals("") || lastName.getText().equals("")        ) {
+        if (userName.getText().equals("") || firstName.getText().equals("") || lastName.getText().equals("")) {
             // TODO: display error.
             return;
         }
@@ -58,13 +59,14 @@ public class UserDetailViewController {
         userCreateModel.setUserName(userName.getText());
         userCreateModel.setFirstName(firstName.getText());
         userCreateModel.setLastName(lastName.getText());
-        userCreateModel.setAdmin(false);
+        userCreateModel.setAdmin(isAdmin.isSelected());
         var result = CoreApiHelper.createUser(userCreateModel);
         userName.setText(result.getUserName());
         firstName.setText(result.getFirstName());
         lastName.setText(result.getLastName());
         creationTimestamp.setText(result.getCreationTimestamp().toString());
         lastUpdateTimestamp.setText(result.getLastUpdatedTimestamp().toString());
+        isAdmin.setSelected(result.isAdmin());
     }
 
     /**
@@ -107,4 +109,10 @@ public class UserDetailViewController {
      */
     @FXML
     private Button actionButton;
+
+    /**
+     * Control to set whether the user is an admin or not.
+     */
+    @FXML
+    private CheckBox isAdmin;
 }

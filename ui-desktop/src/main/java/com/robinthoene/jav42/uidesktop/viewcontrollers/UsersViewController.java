@@ -3,6 +3,7 @@ package com.robinthoene.jav42.uidesktop.viewcontrollers;
 import com.robinthoene.jav42.models.user.UserReadModel;
 import com.robinthoene.jav42.uidesktop.helpers.CoreApiHelper;
 import com.robinthoene.jav42.uidesktop.helpers.NavigationHelper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -41,6 +42,13 @@ public class UsersViewController {
         lastName.setCellValueFactory(new PropertyValueFactory<UserReadModel, String>("lastName"));
         lastUpdatedTimestamp.setCellValueFactory(new PropertyValueFactory<UserReadModel, Date>("lastUpdatedTimestamp"));
         creationTimestamp.setCellValueFactory(new PropertyValueFactory<UserReadModel, Date>("creationTimestamp"));
+        isAdmin.setCellValueFactory(cellData -> {
+            boolean isAdmin = cellData.getValue().isAdmin();
+            String displayValue = isAdmin ? "Admin" : "Nutzer";
+            return new ReadOnlyStringWrapper(displayValue);
+        });
+
+
         // Init the action column.
         actions.setCellFactory(new Callback<TableColumn<UserReadModel, Void>, TableCell<UserReadModel, Void>>() {
             @Override
@@ -156,4 +164,10 @@ public class UsersViewController {
      */
     @FXML
     private TableColumn<UserReadModel, Void> actions;
+
+    /**
+     * Display whether the user is an admin or not.
+     */
+    @FXML
+    private TableColumn<UserReadModel, String> isAdmin;
 }
