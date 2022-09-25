@@ -1,0 +1,23 @@
+FROM maven:3.6-alpine as DEPS
+
+WORKDIR /opt/app
+COPY common/pom.xml common/pom.xml
+COPY coreapi/pom.xml coreapi/pom.xml
+COPY coreapi/mvnw coreapi/mvnw
+COPY coreapi/.mvn coreapi/.mvn
+COPY uidesktop/pom.xml uidesktop/pom.xml
+
+COPY pom.xml .
+RUN mvn -B -e -C org.apache.maven.plugins:maven-dependency-plugin:3.3.0:go-offline -DexcludeArtifactIds=common
+
+FROM maven:3.8.6-jdk-11 as BUILDER
+WORKDIR /opt/app
+COPY --from=DEPS /root/.m2 /root/.m2
+COPY --from=DEPS /opt/app/ /opt/app
+COPY common/src /opt/app/common/src
+COPY coreapi/src /opt/app/coreapi/src
+
+RUN mvn -B -e clean install -DskipTests=true
+WORKDIR /opt/app/coreapi/
+EXPOSE 8080
+CMD [ "mvn", "spring-boot:run", "--no-snapshot-updates", "--offline" ]
