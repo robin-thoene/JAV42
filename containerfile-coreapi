@@ -3,8 +3,6 @@ FROM maven:3.6-alpine as DEPS
 WORKDIR /opt/app
 COPY common/pom.xml common/pom.xml
 COPY coreapi/pom.xml coreapi/pom.xml
-COPY coreapi/mvnw coreapi/mvnw
-COPY coreapi/.mvn coreapi/.mvn
 COPY uidesktop/pom.xml uidesktop/pom.xml
 
 COPY pom.xml .
@@ -15,6 +13,7 @@ WORKDIR /opt/app
 COPY --from=DEPS /root/.m2 /root/.m2
 COPY --from=DEPS /opt/app/ /opt/app
 COPY common/src /opt/app/common/src
+RUN rm common/src/main/java/module-info.java
 COPY coreapi/src /opt/app/coreapi/src
 
 RUN mvn -B -e clean install -DskipTests=true
