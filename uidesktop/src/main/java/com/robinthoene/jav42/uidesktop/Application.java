@@ -15,7 +15,7 @@ public class Application extends javafx.application.Application {
         stage.setResizable(false);
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
-        stage.setTitle("JAB42 - Client Application");
+        stage.setTitle("JAV42 - Client Application");
         stage.setScene(scene);
         stage.show();
     }
