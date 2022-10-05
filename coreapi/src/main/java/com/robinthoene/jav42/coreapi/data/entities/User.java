@@ -174,7 +174,7 @@ public class User {
     private String lastName;
 
     /**
-     * The unique username to use to login.
+     * The unique username to use to log in.
      */
     @Column(unique = true, nullable = false)
     private String userName;
@@ -202,5 +202,4 @@ public class User {
      */
     @Column(nullable = false)
     private Timestamp lastUpdatedTimestamp = new Timestamp(System.currentTimeMillis());
-    ;
 }
